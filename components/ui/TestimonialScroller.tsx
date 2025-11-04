@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Testimonial } from '../../types';
 import { StarIcon } from '../../constants';
@@ -22,11 +23,11 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
 
 const TestimonialScroller: React.FC<{ testimonials: Testimonial[] }> = ({ testimonials }) => {
   return (
-    <section className="py-20 bg-dark-navy/50">
+    <section className="py-20 bg-primary-black/50">
         <div className="container mx-auto">
             <AnimatedSection className="text-center mb-12 px-4">
                  <h2 className="text-4xl font-bold">What Our <span className="text-highlight-blue">Clients Say</span></h2>
-                <p className="text-gray-400 mt-2 max-w-2xl mx-auto">Real feedback from partners who trust Aegis Security.</p>
+                <p className="text-gray-400 mt-2 max-w-2xl mx-auto">Real feedback from partners who trust Shield Agency.</p>
             </AnimatedSection>
             <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)] group">
                 <ul className="flex items-stretch justify-center md:justify-start [&_li]:mx-4 animate-scroll-horizontal group-hover:[animation-play-state:paused]">

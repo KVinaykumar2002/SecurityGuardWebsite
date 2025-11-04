@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { TESTIMONIALS } from '../../constants';
 import AnimatedSection from '../ui/AnimatedSection';
@@ -74,7 +75,7 @@ const CustomersPage: React.FC<CustomersPageProps> = ({ isHomePageSection = false
     return (
         <>
             {testimonialSection}
-             <section className="py-16 bg-dark-navy/50">
+             <section className="py-16 bg-primary-black/50">
                 <div className="container mx-auto px-4">
                      <AnimatedSection>
                         <h3 className="text-center text-2xl font-semibold text-gray-300 mb-8">Our Valued Partners</h3>

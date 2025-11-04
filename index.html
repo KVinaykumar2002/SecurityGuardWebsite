@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aegis Security Solutions</title>
+    <title>Shield Agency</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +16,9 @@
                         sans: ['Poppins', 'sans-serif'],
                     },
                     colors: {
-                        'dark-navy': '#0F172A',
+                        'primary-black': '#0a0a0a',
                         'glass-bg': 'rgba(255, 255, 255, 0.05)',
-                        'accent-gold': '#FACC15',
+                        'accent-gold': '#d4af37',
                         'highlight-blue': '#3B82F6',
                         'shadow-glow': 'rgba(59, 130, 246, 0.3)',
                         'accent-purple': '#8B5CF6',
@@ -36,7 +36,7 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0F172A;
+            background: #0a0a0a;
         }
         ::-webkit-scrollbar-thumb {
             background: #3B82F6;
@@ -96,7 +96,7 @@
             background: linear-gradient(
                 90deg,
                 transparent,
-                rgba(250, 204, 21, 0.1),
+                rgba(212, 175, 55, 0.1),
                 transparent
             );
             animation: light-streak 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
@@ -104,7 +104,7 @@
             z-index: 1;
         }
 
-        /* Testimonial Scroller Animation */
+        /* Horizontal Scroller Animation */
         @keyframes scroll-horizontal {
             from {
                 transform: translateX(0);
@@ -114,7 +114,24 @@
             }
         }
         .animate-scroll-horizontal {
-            animation: scroll-horizontal 60s linear infinite;
+            animation: scroll-horizontal 70s linear infinite;
+        }
+        
+        .hover-text-glow:hover {
+            text-shadow: 0 0 10px #d4af37; /* accent-gold color */
+        }
+        
+        /* Gold Glow Animation */
+        @keyframes gold-glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(212, 175, 55, 0.4), 0 0 20px rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4);
+            }
+        }
+        .animate-gold-glow {
+            animation: gold-glow 3s ease-in-out infinite;
         }
     </style>
 <script type="importmap">
@@ -127,7 +144,7 @@
 }
 </script>
 </head>
-<body class="bg-dark-navy text-white font-sans overflow-x-hidden">
+<body class="bg-primary-black text-white font-sans overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>

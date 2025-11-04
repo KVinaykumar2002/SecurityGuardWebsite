@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Page } from '../../types';
 import Button from '../ui/Button';
@@ -26,7 +27,7 @@ const TrainingPage: React.FC<TrainingPageProps> = ({ setPage }) => {
                 <div className="absolute inset-0 bg-black/70"></div>
                 <div className="relative z-10 container mx-auto px-4">
                     <AnimatedSection>
-                        <h1 className="text-5xl font-bold">Aegis Training Academy</h1>
+                        <h1 className="text-5xl font-bold">Shield Agency Training Academy</h1>
                         <p className="text-xl mt-2 text-accent-gold">Creating the Next Generation of Elite Security Professionals.</p>
                     </AnimatedSection>
                 </div>
@@ -40,7 +41,7 @@ const TrainingPage: React.FC<TrainingPageProps> = ({ setPage }) => {
                         </AnimatedSection>
                          <AnimatedSection delay="delay-300">
                              <h2 className="text-4xl font-bold mb-4 text-highlight-blue">Beyond the Standard</h2>
-                             <p className="text-gray-300 leading-relaxed mb-4">Our training program is designed to forge not just guards, but true protectors. We combine classroom theory with intense, practical, scenario-based drills to ensure our graduates are prepared for any situation. The Aegis certification is a mark of distinction in the security industry.</p>
+                             <p className="text-gray-300 leading-relaxed mb-4">Our training program is designed to forge not just guards, but true protectors. We combine classroom theory with intense, practical, scenario-based drills to ensure our graduates are prepared for any situation. The Shield Agency certification is a mark of distinction in the security industry.</p>
                              <p className="text-gray-300 leading-relaxed"><strong>Duration:</strong> 12 Weeks comprehensive training. <br/><strong>Certification:</strong> Graduates receive multiple state and national certifications, including advanced first aid and defensive tactics.</p>
                         </AnimatedSection>
                     </div>

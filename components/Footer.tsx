@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import { Page } from '../types';
 import { NAV_LINKS, ShieldCheckIcon, FacebookIcon, YoutubeIcon, LinkedinIcon, GithubIcon } from '../constants';
@@ -25,10 +27,10 @@ const Footer: React.FC<FooterProps> = ({ setPage }) => {
                     <div>
                         <div onClick={() => setPage('Home')} className="flex items-center space-x-2 cursor-pointer mb-4">
                             <ShieldCheckIcon className="w-8 h-8 text-highlight-blue" />
-                            <span className="text-2xl font-bold">Aegis</span>
+                            <span className="text-2xl font-bold">Shield Agency</span>
                         </div>
                         <p className="text-gray-400 text-sm mb-6">
-                            Aegis Security is the practice of protecting people, property, and assets from physical threats and unauthorized access.
+                            Shield Agency is the practice of protecting people, property, and assets from physical threats and unauthorized access.
                         </p>
                         <h3 className="font-bold text-lg mb-2 text-white">Get In Touch</h3>
                         <form onSubmit={handleSubscribe}>
@@ -59,6 +61,11 @@ const Footer: React.FC<FooterProps> = ({ setPage }) => {
                                    </button>
                                </li>
                            ))}
+                            <li>
+                                <button onClick={() => setPage('Admin')} className="text-gray-300 hover:text-white transition-colors">
+                                    Admin Dashboard
+                                </button>
+                            </li>
                         </ul>
                     </div>
 
@@ -81,7 +88,7 @@ const Footer: React.FC<FooterProps> = ({ setPage }) => {
                         <h3 className="font-bold text-lg mb-4">Contact</h3>
                         <ul className="space-y-3 text-gray-300">
                             <li><a href="tel:555-123-4567" className="hover:text-white transition-colors underline">(555) 123-4567</a></li>
-                            <li><a href="mailto:contact@aegis.com" className="hover:text-white transition-colors underline">contact@aegis.com</a></li>
+                            <li><a href="mailto:contact@securityagency.com" className="hover:text-white transition-colors underline">contact@shieldagency.com</a></li>
                             <li>123 Security Plaza, <br />Metro City</li>
                         </ul>
                         <div className="flex space-x-4 mt-6">
@@ -96,13 +103,13 @@ const Footer: React.FC<FooterProps> = ({ setPage }) => {
                 {/* Large Brand Name */}
                 <div className="text-center my-16">
                     <h1 className="text-8xl md:text-9xl font-extrabold tracking-tighter text-white opacity-90">
-                        Aegis
+                        Shield Agency
                     </h1>
                 </div>
 
                 {/* Copyright */}
                 <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                    <p>&copy; {new Date().getFullYear()} Aegis Security Solutions. All Rights Reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Shield Agency. All Rights Reserved.</p>
                 </div>
             </div>
         </footer>

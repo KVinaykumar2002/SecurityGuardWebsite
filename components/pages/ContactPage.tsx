@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import AnimatedSection from '../ui/AnimatedSection';
 import Button from '../ui/Button';
@@ -36,7 +37,7 @@ const ContactPage: React.FC = () => {
                             <div>
                                 <h2 className="text-3xl font-bold text-highlight-blue mb-4">Contact Details</h2>
                                 <p className="text-gray-300"><strong>Address:</strong> 123 Security Plaza, Metro City, 10001</p>
-                                <p className="text-gray-300"><strong>Email:</strong> contact@aegis-security.com</p>
+                                <p className="text-gray-300"><strong>Email:</strong> contact@securityagency.com</p>
                                 <p className="text-gray-300"><strong>Phone:</strong> (555) 123-4567</p>
                                 <p className="text-gray-300"><strong>Hours:</strong> Mon-Fri, 9am - 5pm</p>
                             </div>

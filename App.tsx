@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Page } from './types';
 import Header from './components/Header';
@@ -11,20 +10,44 @@ import CustomersPage from './components/pages/CustomersPage';
 import CertificationsPage from './components/pages/CertificationsPage';
 import CareersPage from './components/pages/CareersPage';
 import ContactPage from './components/pages/ContactPage';
+import AdminDashboard from './components/pages/AdminDashboard';
+import LoginPage from './components/pages/LoginPage';
+import SignUpPage from './components/pages/SignUpPage';
 
 const App: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<Page>('Home');
     const [activeSubPage, setActiveSubPage] = useState<string | null>(null);
     const [isFading, setIsFading] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const handleLoginSuccess = () => {
+        setIsAuthenticated(true);
+        handlePageChange('Admin');
+    };
+
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+        handlePageChange('Home');
+    };
 
     const handlePageChange = (page: Page, subPageId?: string) => {
-        if (page === currentPage && (subPageId === activeSubPage || !subPageId)) return;
+        if (page === 'Admin' && !isAuthenticated) {
+            page = 'Login';
+        }
+
+        // If clicking the same link again, do nothing
+        if (page === currentPage && subPageId === activeSubPage) return;
+
+        // If on the same page, but clicking a different sub-item, just update state to trigger scroll
+        if (page === currentPage && subPageId && subPageId !== activeSubPage) {
+            setActiveSubPage(subPageId);
+            return;
+        }
 
         setIsFading(true);
         setTimeout(() => {
             setCurrentPage(page);
             setActiveSubPage(subPageId || null);
-            window.scrollTo(0, 0);
             setIsFading(false);
         }, 300);
     };
@@ -36,22 +59,47 @@ const App: React.FC = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    const renderPage = () => {
+    useEffect(() => {
+        // This effect handles scrolling for both page changes and same-page sub-item navigation.
+
+        // If it's a new page (fading), wait for fade-in to complete.
+        if (isFading) return;
+
+        // If there's a sub-page ID, scroll to it.
+        if (activeSubPage) {
+            const element = document.getElementById(activeSubPage);
+            if (element) {
+                // setTimeout ensures element is painted after state updates.
+                setTimeout(() => {
+                    const header = document.querySelector('header > nav');
+                    const headerHeight = header ? header.getBoundingClientRect().height : 100;
+                    const y = element.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }, 50);
+            } else {
+                // Fallback to top if element not found
+                window.scrollTo(0, 0);
+            }
+        } else {
+            // If no sub-page, scroll to top.
+            window.scrollTo(0, 0);
+        }
+    }, [currentPage, activeSubPage, isFading]);
+
+    const renderPublicPage = () => {
         switch (currentPage) {
             case 'Home':
                 return <HomePage setPage={handlePageChange} />;
             case 'About':
                 return <AboutPage subPageId={activeSubPage || 'journey'} />;
             case 'Services':
-                return <ServicesPage serviceId={activeSubPage || 'private-security'} setPage={handlePageChange} />;
+                return <ServicesPage />;
             case 'Training':
                 return <TrainingPage setPage={handlePageChange} />;
-            case 'Customers':
-                return <CustomersPage />;
-            case 'Certifications':
+            case 'Gallery':
                 return <CertificationsPage />;
             case 'Careers':
-                return <CareersPage subPageId={activeSubPage || 'openings'} />;
+                return <CareersPage subPageId={activeSubPage || 'openings'} setPage={handlePageChange} />;
             case 'Contact':
                 return <ContactPage />;
             default:
@@ -59,13 +107,26 @@ const App: React.FC = () => {
         }
     };
 
+    if (currentPage === 'Admin') {
+        return <AdminDashboard setPage={handlePageChange} onLogout={handleLogout} />;
+    }
+    
+    if (currentPage === 'Login') {
+        return <LoginPage setPage={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
+    }
+
+    if (currentPage === 'SignUp') {
+        return <SignUpPage setPage={handlePageChange} />;
+    }
+
+
     return (
-        <div className="bg-dark-navy min-h-screen relative">
+        <div className="bg-primary-black min-h-screen relative">
             <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
             <div className="relative z-10">
-                <Header activePage={currentPage} setPage={handlePageChange} />
+                <Header activePage={currentPage} setPage={handlePageChange} isAuthenticated={isAuthenticated} onLogout={handleLogout} />
                 <main className={`transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
-                    {renderPage()}
+                    {renderPublicPage()}
                 </main>
                 <Footer setPage={handlePageChange} />
             </div>

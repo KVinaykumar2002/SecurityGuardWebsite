@@ -1,14 +1,17 @@
 
 import React, { useState } from 'react';
+import { Page } from '../../types';
 import { JOB_OPENINGS } from '../../constants';
 import AnimatedSection from '../ui/AnimatedSection';
 import Button from '../ui/Button';
+import RecruitmentProcedure from '../RecruitmentProcedure';
 
 interface CareersPageProps {
     subPageId: string;
+    setPage: (page: Page, subPageId?: string) => void;
 }
 
-const CareersPage: React.FC<CareersPageProps> = ({ subPageId }) => {
+const CareersPage: React.FC<CareersPageProps> = ({ subPageId, setPage }) => {
     const [expandedJob, setExpandedJob] = useState<number | null>(0);
     const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
     const [resume, setResume] = useState<File | null>(null);
@@ -38,7 +41,7 @@ const CareersPage: React.FC<CareersPageProps> = ({ subPageId }) => {
         <div className="pt-24 pb-12">
             <header className="text-center mb-16 px-4">
                 <AnimatedSection>
-                    <h1 className="text-5xl font-bold">Join Our <span className="text-accent-gold">Elite Team</span></h1>
+                    <h1 className="text-5xl font-bold">Join <span className="text-accent-gold">Shield Agency</span></h1>
                     <p className="text-lg text-gray-300 mt-2">Build a rewarding career protecting what matters most.</p>
                 </AnimatedSection>
             </header>
@@ -59,7 +62,7 @@ const CareersPage: React.FC<CareersPageProps> = ({ subPageId }) => {
                                         <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 transition-transform duration-300 ${expandedJob === index ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                     </button>
                                     {expandedJob === index && (
-                                        <div className="p-6 border-t border-white/10 bg-dark-navy/30">
+                                        <div className="p-6 border-t border-white/10 bg-primary-black/30">
                                             <ul className="list-disc list-inside space-y-2 text-gray-300">
                                                {job.description.map((desc, i) => <li key={i}>{desc}</li>)}
                                             </ul>
@@ -71,6 +74,9 @@ const CareersPage: React.FC<CareersPageProps> = ({ subPageId }) => {
                     </AnimatedSection>
                 </section>
                 
+                {/* Recruitment Procedure */}
+                <RecruitmentProcedure setPage={setPage} />
+
                 {/* Apply Now Form */}
                 <section id="apply" className="mb-12">
                      <AnimatedSection>

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Page } from '../types';
 import { CAROUSEL_SLIDES } from '../constants';
@@ -56,12 +57,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ setPage }) => {
                 >
                     <img 
                         src={slide.image} 
-                        alt="Aegis Security Professionals" 
+                        alt="Security Agency Professionals" 
                         loading="lazy"
                         className={`w-full h-full object-cover ${currentIndex === index ? kenburnsClasses[index % kenburnsClasses.length] : ''}`}
                         key={currentIndex} // Force re-render to restart animation
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-navy/80 via-black/60 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-black/80 via-black/60 to-transparent"></div>
                 </div>
             ))}
 
@@ -79,7 +80,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ setPage }) => {
                     </p>
                     <Button 
                         onClick={() => setPage(CAROUSEL_SLIDES[currentIndex].ctaPage, CAROUSEL_SLIDES[currentIndex].ctaSubPageId)} 
-                        variant="primary"
+                        variant="secondary"
                     >
                         {CAROUSEL_SLIDES[currentIndex].ctaText}
                     </Button>

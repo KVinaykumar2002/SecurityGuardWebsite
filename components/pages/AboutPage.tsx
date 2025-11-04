@@ -2,6 +2,8 @@
 import React from 'react';
 import { MANAGEMENT_PROFILES, ShieldCheckIcon, UserCheckIcon, LockIcon } from '../../constants';
 import AnimatedSection from '../ui/AnimatedSection';
+import OurJourneyTimeline from '../OurJourneyTimeline';
+import OurClientsScroller from '../ui/OurClientsScroller';
 
 interface AboutPageProps {
     subPageId: string;
@@ -13,40 +15,14 @@ const AboutPage: React.FC<AboutPageProps> = ({ subPageId }) => {
         <div className="pt-24 pb-12">
             <header className="text-center mb-16 px-4">
                 <AnimatedSection>
-                    <h1 className="text-5xl font-bold text-white">About <span className="text-accent-gold">Aegis Security</span></h1>
+                    <h1 className="text-5xl font-bold text-white">About <span className="text-accent-gold">Shield Agency</span></h1>
                     <p className="text-lg text-gray-300 mt-2">Forged in experience, driven by excellence.</p>
                 </AnimatedSection>
             </header>
 
             <div className="container mx-auto px-4">
                 {/* Our Journey */}
-                <AnimatedSection>
-                    <section id="journey" className="mb-20">
-                        <h2 className="text-4xl font-bold text-center mb-12"><span className="text-highlight-blue">Our</span> Journey</h2>
-                        <div className="relative border-l-2 border-highlight-blue/30 ml-4 md:ml-0">
-                            {/* Timeline Item 1 */}
-                            <div className="mb-8 pl-8 relative before:absolute before:left-[-11px] before:top-1/2 before:-translate-y-1/2 before:w-5 before:h-5 before:bg-highlight-blue before:rounded-full before:border-4 before:border-dark-navy">
-                                <h3 className="text-2xl font-bold text-accent-gold">2005 - Foundation</h3>
-                                <p className="text-gray-300">Founded by law enforcement veterans, Aegis Security was established with a mission to bring a new level of professionalism to the private security industry.</p>
-                            </div>
-                            {/* Timeline Item 2 */}
-                            <div className="mb-8 pl-8 relative before:absolute before:left-[-11px] before:top-1/2 before:-translate-y-1/2 before:w-5 before:h-5 before:bg-highlight-blue before:rounded-full before:border-4 before:border-dark-navy">
-                                <h3 className="text-2xl font-bold text-accent-gold">2012 - Expansion</h3>
-                                <p className="text-gray-300">Expanded services to include executive protection and integrated facility management, securing our first major corporate contracts.</p>
-                            </div>
-                            {/* Timeline Item 3 */}
-                            <div className="mb-8 pl-8 relative before:absolute before:left-[-11px] before:top-1/2 before:-translate-y-1/2 before:w-5 before:h-5 before:bg-highlight-blue before:rounded-full before:border-4 before:border-dark-navy">
-                                <h3 className="text-2xl font-bold text-accent-gold">2018 - Training Academy</h3>
-                                <p className="text-gray-300">Launched our state-of-the-art Training Academy, setting a new industry benchmark for security officer training and certification.</p>
-                            </div>
-                             {/* Timeline Item 4 */}
-                            <div className="pl-8 relative before:absolute before:left-[-11px] before:top-1/2 before:-translate-y-1/2 before:w-5 before:h-5 before:bg-highlight-blue before:rounded-full before:border-4 before:border-dark-navy">
-                                <h3 className="text-2xl font-bold text-accent-gold">Today</h3>
-                                <p className="text-gray-300">Recognized as a leading security provider, protecting billions in assets and ensuring the safety of thousands of individuals nationwide.</p>
-                            </div>
-                        </div>
-                    </section>
-                </AnimatedSection>
+                <OurJourneyTimeline />
                 
                 {/* Why Choose Us */}
                  <AnimatedSection>
@@ -72,9 +48,12 @@ const AboutPage: React.FC<AboutPageProps> = ({ subPageId }) => {
                     </section>
                 </AnimatedSection>
 
+                {/* Our Clients Section */}
+                <OurClientsScroller />
+
                 {/* Our Management */}
                 <AnimatedSection>
-                    <section id="management" className="mb-12">
+                    <section id="management" className="mb-20">
                         <h2 className="text-4xl font-bold text-center mb-12"><span className="text-highlight-blue">Our</span> Management</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             {MANAGEMENT_PROFILES.map((profile, index) => (
@@ -92,6 +71,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ subPageId }) => {
                         </div>
                     </section>
                 </AnimatedSection>
+
             </div>
         </div>
     );

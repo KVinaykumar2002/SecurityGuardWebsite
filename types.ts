@@ -1,3 +1,4 @@
+
 // Fix: Import ElementType to resolve 'Cannot find namespace 'React'' error.
 import type { ElementType, ReactNode } from 'react';
 
@@ -6,10 +7,12 @@ export type Page =
   | 'About'
   | 'Services'
   | 'Training'
-  | 'Customers'
-  | 'Certifications'
+  | 'Gallery'
   | 'Careers'
-  | 'Contact';
+  | 'Contact'
+  | 'Admin'
+  | 'Login'
+  | 'SignUp';
 
 export interface NavItem {
   label: string;
@@ -18,7 +21,7 @@ export interface NavItem {
 }
 
 export interface NavSubItem {
-    label: string;
+    label:string;
     page: Page;
     subPageId: string;
 }
@@ -26,7 +29,6 @@ export interface NavSubItem {
 export interface Service {
     id: string;
     title: string;
-    tagline: string;
     description: string;
     details: string[];
     icon: ElementType;
@@ -61,4 +63,34 @@ export interface CarouselSlide {
   ctaText: string;
   ctaPage: Page;
   ctaSubPageId?: string;
+}
+
+// Admin Dashboard Types
+export type AdminSection =
+  | 'Dashboard'
+  | 'Guards'
+  | 'Training'
+  | 'Customers'
+  | 'Certifications'
+  | 'Gallery'
+  | 'Applications'
+  | 'Enquiries'
+  | 'Settings';
+
+export interface AdminStat {
+    title: string;
+    value: string;
+    change: string;
+    changeType: 'increase' | 'decrease';
+    icon: ElementType;
+}
+
+export interface GuardProfile {
+    id: string;
+    name: string;
+    location: string;
+    shift: string;
+    contact: string;
+    status: 'Active' | 'On Leave';
+    image: string;
 }
