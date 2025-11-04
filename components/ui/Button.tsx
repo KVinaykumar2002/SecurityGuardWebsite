@@ -1,14 +1,14 @@
 
 import React, { ReactNode } from 'react';
 
-interface ButtonProps {
+// Fix: Extend React.ButtonHTMLAttributes to allow standard button props like 'type'.
+// This makes the component more flexible and solves the error when used in forms.
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
-    onClick: () => void;
     variant?: 'primary' | 'secondary';
-    className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, variant = 'primary', className = '' }) => {
+const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', className = '', ...props }) => {
     const baseClasses = 'px-8 py-3 font-semibold rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg';
     
     const variantClasses = {
@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, variant = 'primary',
     };
 
     return (
-        <button onClick={onClick} className={`${baseClasses} ${variantClasses[variant]} ${className}`}>
+        <button {...props} className={`${baseClasses} ${variantClasses[variant]} ${className}`}>
             {children}
         </button>
     );

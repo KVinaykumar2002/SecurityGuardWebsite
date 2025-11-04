@@ -21,6 +21,7 @@
                         'accent-gold': '#FACC15',
                         'highlight-blue': '#3B82F6',
                         'shadow-glow': 'rgba(59, 130, 246, 0.3)',
+                        'accent-purple': '#8B5CF6',
                     },
                     backdropBlur: {
                         xl: '24px',
@@ -101,6 +102,19 @@
             animation: light-streak 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
             pointer-events: none;
             z-index: 1;
+        }
+
+        /* Testimonial Scroller Animation */
+        @keyframes scroll-horizontal {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+        .animate-scroll-horizontal {
+            animation: scroll-horizontal 60s linear infinite;
         }
     </style>
 <script type="importmap">

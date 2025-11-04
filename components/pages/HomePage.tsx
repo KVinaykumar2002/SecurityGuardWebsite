@@ -1,10 +1,10 @@
 import React from 'react';
 import { Page } from '../../types';
-import { SERVICES_DATA, ShieldCheckIcon, UserCheckIcon, LockIcon } from '../../constants';
+import { SERVICES_DATA, ShieldCheckIcon, UserCheckIcon, LockIcon, TESTIMONIALS } from '../../constants';
 import Button from '../ui/Button';
 import AnimatedSection from '../ui/AnimatedSection';
-import CustomersPage from './CustomersPage';
 import HeroCarousel from '../HeroCarousel';
+import TestimonialScroller from '../ui/TestimonialScroller';
 
 interface HomePageProps {
     setPage: (page: Page, subPageId?: string) => void;
@@ -64,7 +64,7 @@ const HomePage: React.FC<HomePageProps> = ({ setPage }) => {
             </section>
 
             {/* Testimonials Section */}
-            <CustomersPage isHomePageSection={true} />
+            <TestimonialScroller testimonials={TESTIMONIALS} />
 
         </div>
     );

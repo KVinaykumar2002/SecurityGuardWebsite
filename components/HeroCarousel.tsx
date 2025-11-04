@@ -69,7 +69,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ setPage }) => {
             <div className="relative z-20 h-full flex items-center justify-center text-center text-white p-4">
                  <div 
                     key={currentIndex} // Re-trigger animation on slide change
-                    className="relative bg-glass-bg backdrop-blur-md border border-accent-gold/50 rounded-xl p-8 max-w-3xl w-full shadow-2xl shadow-black/30 animate-slide-up-fade-in overflow-hidden animate-light-streak"
+                    className="relative p-8 max-w-3xl w-full animate-slide-up-fade-in"
                  >
                     <h1 className="text-4xl md:text-6xl font-bold mb-4" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
                        {CAROUSEL_SLIDES[currentIndex].title}

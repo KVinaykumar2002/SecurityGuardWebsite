@@ -1,95 +1,110 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Page } from '../types';
-import { NAV_LINKS, ShieldCheckIcon } from '../constants';
+import { NAV_LINKS, ShieldCheckIcon, FacebookIcon, YoutubeIcon, LinkedinIcon, GithubIcon } from '../constants';
 
 interface FooterProps {
     setPage: (page: Page, subPageId?: string) => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ setPage }) => {
-    const [isVisible, setIsVisible] = useState(false);
+    const [email, setEmail] = useState('');
 
-    const toggleVisibility = () => {
-        if (window.pageYOffset > 300) {
-            setIsVisible(true);
-        } else {
-            setIsVisible(false);
-        }
+    const handleSubscribe = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Placeholder for subscription logic
+        console.log(`Subscribing ${email}`);
+        alert(`Thank you for subscribing, ${email}!`);
+        setEmail('');
     };
-
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    };
-
-    useEffect(() => {
-        window.addEventListener('scroll', toggleVisibility);
-        return () => window.removeEventListener('scroll', toggleVisibility);
-    }, []);
 
     return (
-        <footer className="bg-dark-navy/50 border-t border-white/10 py-12 px-4">
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="col-span-1 md:col-span-1">
-                    <div onClick={() => setPage('Home')} className="flex items-center space-x-2 cursor-pointer mb-4">
-                         <ShieldCheckIcon className="w-8 h-8 text-highlight-blue" />
-                         <span className="text-2xl font-bold">Aegis</span>
+        <footer className="bg-black text-white pt-20 pb-10 px-4">
+            <div className="container mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                    {/* Column 1: Brand and Subscribe */}
+                    <div>
+                        <div onClick={() => setPage('Home')} className="flex items-center space-x-2 cursor-pointer mb-4">
+                            <ShieldCheckIcon className="w-8 h-8 text-highlight-blue" />
+                            <span className="text-2xl font-bold">Aegis</span>
+                        </div>
+                        <p className="text-gray-400 text-sm mb-6">
+                            Aegis Security is the practice of protecting people, property, and assets from physical threats and unauthorized access.
+                        </p>
+                        <h3 className="font-bold text-lg mb-2 text-white">Get In Touch</h3>
+                        <form onSubmit={handleSubscribe}>
+                            <div className="flex items-center border border-accent-purple rounded-full p-1 focus-within:ring-2 focus-within:ring-accent-purple transition-all">
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Email address"
+                                    required
+                                    className="bg-transparent w-full py-1 px-4 text-white placeholder-gray-500 focus:outline-none"
+                                />
+                                <button type="submit" className="bg-accent-purple rounded-full px-5 py-2 text-sm font-semibold hover:bg-purple-500 transition-colors flex-shrink-0">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <p className="text-gray-400 text-sm">Your Safety, Our Priority. Providing top-tier security solutions since 2005.</p>
+
+                    {/* Column 2: Company Links */}
+                    <div>
+                        <h3 className="font-bold text-lg mb-4">Company</h3>
+                        <ul className="space-y-3">
+                           {NAV_LINKS.slice(0,4).map(link => (
+                               <li key={link.label}>
+                                   <button onClick={() => setPage(link.page, link.subItems?.[0]?.subPageId)} className="text-gray-300 hover:text-white transition-colors">
+                                       {link.label}
+                                   </button>
+                               </li>
+                           ))}
+                        </ul>
+                    </div>
+
+                    {/* Column 3: Services Links */}
+                    <div>
+                        <h3 className="font-bold text-lg mb-4">Services</h3>
+                        <ul className="space-y-3">
+                            {NAV_LINKS.find(l => l.page === 'Services')?.subItems?.map(sub => (
+                                 <li key={sub.label}>
+                                   <button onClick={() => setPage(sub.page, sub.subPageId)} className="text-gray-300 hover:text-white transition-colors">
+                                       {sub.label}
+                                   </button>
+                               </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Column 4: Contact and Socials */}
+                    <div>
+                        <h3 className="font-bold text-lg mb-4">Contact</h3>
+                        <ul className="space-y-3 text-gray-300">
+                            <li><a href="tel:555-123-4567" className="hover:text-white transition-colors underline">(555) 123-4567</a></li>
+                            <li><a href="mailto:contact@aegis.com" className="hover:text-white transition-colors underline">contact@aegis.com</a></li>
+                            <li>123 Security Plaza, <br />Metro City</li>
+                        </ul>
+                        <div className="flex space-x-4 mt-6">
+                           <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-white transition-colors"><FacebookIcon /></a>
+                           <a href="#" aria-label="Youtube" className="text-gray-400 hover:text-white transition-colors"><YoutubeIcon /></a>
+                           <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors"><LinkedinIcon /></a>
+                           <a href="#" aria-label="Github" className="text-gray-400 hover:text-white transition-colors"><GithubIcon /></a>
+                        </div>
+                    </div>
                 </div>
 
-                <div>
-                    <h3 className="font-bold text-lg mb-4 text-accent-gold">Quick Links</h3>
-                    <ul className="space-y-2">
-                       {NAV_LINKS.slice(0,4).map(link => (
-                           <li key={link.label}>
-                               <button onClick={() => setPage(link.page, link.subItems?.[0]?.subPageId)} className="text-gray-300 hover:text-highlight-blue transition-colors">
-                                   {link.label}
-                               </button>
-                           </li>
-                       ))}
-                    </ul>
+                {/* Large Brand Name */}
+                <div className="text-center my-16">
+                    <h1 className="text-8xl md:text-9xl font-extrabold tracking-tighter text-white opacity-90">
+                        Aegis
+                    </h1>
                 </div>
 
-                <div>
-                    <h3 className="font-bold text-lg mb-4 text-accent-gold">Services</h3>
-                    <ul className="space-y-2">
-                        {NAV_LINKS.find(l => l.page === 'Services')?.subItems?.map(sub => (
-                             <li key={sub.label}>
-                               <button onClick={() => setPage(sub.page, sub.subPageId)} className="text-gray-300 hover:text-highlight-blue transition-colors">
-                                   {sub.label}
-                               </button>
-                           </li>
-                        ))}
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 className="font-bold text-lg mb-4 text-accent-gold">Contact Us</h3>
-                    <ul className="space-y-2 text-gray-300">
-                        <li>123 Security Plaza, Metro City</li>
-                        <li>contact@aegis.com</li>
-                        <li>(555) 123-4567</li>
-                    </ul>
+                {/* Copyright */}
+                <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                    <p>&copy; {new Date().getFullYear()} Aegis Security Solutions. All Rights Reserved.</p>
                 </div>
             </div>
-            <div className="mt-8 pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
-                <p>&copy; {new Date().getFullYear()} Aegis Security Solutions. All Rights Reserved.</p>
-            </div>
-            
-            {isVisible && (
-                <button
-                    onClick={scrollToTop}
-                    className="fixed bottom-5 right-5 bg-highlight-blue text-white p-3 rounded-full shadow-lg hover:bg-blue-500 transition-all duration-300"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                    </svg>
-                </button>
-            )}
         </footer>
     );
 };
